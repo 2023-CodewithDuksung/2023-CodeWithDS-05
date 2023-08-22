@@ -1,12 +1,25 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link href="{% static 'board/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
     <title>회원가입</title>
 </head>
 <body>
-{% include 'board/menubar.html' %}
+{% include 'board/menubar.html' %}<br>
 
+<script>
+    function checkUser(){
+        {% for user in users %}
+        {% if user == form.username %}
+            alert("아이디가 중복되었거나 비밀번호가 맞지 않습니다.");
+        {% endif %}
+        {% endfor %}
+    };
+</script>
+
+    <div class="container mx-auto text-center">
     <form method="POST" action="{% url 'user:signup' %}">
         {% csrf_token %}
         <p>username</p>
@@ -27,7 +40,8 @@
         <p>major</p>
         {{form.major}}
         <br><br>
-        <input type="submit" value="회원가입">
+        <input type="submit" value="회원가입" onclick="checkUser()">
     </form>
+    </div>
 </body>
 </html>

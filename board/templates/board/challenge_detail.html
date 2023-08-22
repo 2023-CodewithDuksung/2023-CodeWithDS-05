@@ -1,11 +1,6 @@
 {% extends 'board/base.html' %}
 {% block main_area %}
-    {% if user.is_authenticated %}
-        {% if user == challenge.user %}
-        <button type="button" onclick="checkStatus()">챌린지 수정</button>
-        {% endif %}
-    {% endif %}
-
+<div class="col text-left" style="margin-left:100px; margin-right:100px">
     <script>
         function checkStatus() {
             if({{challenge.status}} == "1") {
@@ -35,15 +30,29 @@
             실패
         {% endif %}
     </h4>
-    <h3>{{challenge.title}}</h3>
-    <p>시작 날짜 : {{challenge.start_date}}</p>
-    <p>{{challenge.category}}</p>
-    <p>{{challenge.get_user_name}}</p>
+    <h3 style="font-weight:bold;">{{challenge.title}}</h3>
+    <div>
+        <p>시작 날짜 : {{challenge.start_date}}</p>
+        <p>카테고리 : {{challenge.category}}</p>
+        <p>도전자 : {{challenge.get_user_name}}</p>
+    </div>
+    {% if challenge.memo %}
+    <b style="margin-left:20px; margin-right:20px;">[내용]</b>
+    <div style="background-color:#ffffff; margin-left:20px; margin-right:20px">
+        {{challenge.memo}}
+    </div><br>
+    {% endif %}
 
     {% if request.user in challenge.like_users.all %}
-    <a href="like/" type="button" style="color:red;">좋아요</a>
+    <a href="like/" type="button" style="color:red;"><i class="fa-solid fa-heart fg-danger"></i></a>
     {% else %}
-    <a href="like/" type="button">좋아요</a>
-    {% endif %} ({{challenge.like_users.count}})
-    <p>{{challenge.memo}}</p>
+    <a href="like/" type="button"><i class="fa-regular fa-heart"></i></a>
+    {% endif %} ({{challenge.like_users.count}})<br><br>
+
+    {% if user.is_authenticated %}
+        {% if user == challenge.user %}
+        <button type="button" onclick="checkStatus()">챌린지 수정</button>
+        {% endif %}
+    {% endif %}
+</div>
 {% endblock %}

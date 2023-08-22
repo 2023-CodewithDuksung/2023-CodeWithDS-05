@@ -16,6 +16,7 @@ def challenge_new(request):
             form = ChallengeForm(request.POST)
             if form.is_valid():
                 challenge = form.save(commit=False)
+                challenge.title = request.POST.get('title')
                 if request.POST.get('memo'):
                     challenge.memo = request.POST.get('memo')
                 else:
@@ -42,6 +43,7 @@ def challenge_update(request, pk):
                 if form.is_valid():
                     challenge = form.save(commit=False)
                     challenge.user = request.user
+                    challenge.title = request.POST.get('title')
                     if request.POST.get('memo'):
                         challenge.memo = request.POST.get('memo')
                     else:
@@ -60,7 +62,8 @@ def challenge_update(request, pk):
                 form = ChallengeForm(instance=challenge)
             return render(request, 'board/challenge_update.html', {
                 'form':form,
-                'challenge':Challenge.objects.get(pk=pk)
+                'challenge':Challenge.objects.get(pk=pk),
+                'categories': Category.objects.all(),
             })
     else:
         raise PermissionDenied
@@ -91,8 +94,8 @@ def like(request, pk):
 
 def challenge_list(request, slug_category):
     category = Category.objects.get(slug=slug_category)
-    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0")
-    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1")
+    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-start_date')
+    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-start_date')
 
     page = request.GET.get("page", "1")
     paginator_keep = Paginator(challenge_keep_list, 10)
@@ -113,8 +116,8 @@ def challenge_number_list(request, slug_category, number):
     category = Category.objects.get(slug=slug_category)
     number = Number.objects.get(number=number)
     users = User.objects.exclude(number=number)
-    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0")
-    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1")
+    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-start_date')
+    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-start_date')
     for u in users:
         challenge_keep_list = challenge_keep_list.exclude(user=u)
         challenge_success_list = challenge_success_list.exclude(user=u)
@@ -144,8 +147,8 @@ def challenge_major_list(request, slug_category, slug_major):
     else:
         major = Major.objects.get(slug=slug_major)
         users = User.objects.exclude(major=major)
-    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0")
-    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1")
+    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-start_date')
+    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-start_date')
     for u in users:
         challenge_keep_list = challenge_keep_list.exclude(user=u)
         challenge_success_list = challenge_success_list.exclude(user=u)
@@ -174,8 +177,8 @@ def challenge_major_number_list(request, slug_category, slug_major, number):
     else:
         major = Major.objects.get(slug=slug_major)
         users = User.objects.exclude(major=major)
-    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0")
-    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1")
+    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-start_date')
+    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-start_date')
     for u in users:
         challenge_keep_list = challenge_keep_list.exclude(user=u)
         challenge_success_list = challenge_success_list.exclude(user=u)

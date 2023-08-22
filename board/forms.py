@@ -2,6 +2,7 @@ from django import forms
 from .models import Challenge
 
 class ChallengeForm(forms.ModelForm):
+    '''
     title = forms.CharField(
         max_length=100,
         label='챌린지 제목',
@@ -12,7 +13,7 @@ class ChallengeForm(forms.ModelForm):
             }
         )
     )
-
+'''
     class Meta:
         model = Challenge
-        fields = ('title', 'category')
+        fields = ('category', )

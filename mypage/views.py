@@ -27,7 +27,7 @@ def user_signup(request):
         form = UserForm()
     return render(request, 'mypage/signup.html', {
         'form': form,
-        'categories': Category.objects.all()
+        'categories': Category.objects.all(),
     })
 
 def user_login(request):

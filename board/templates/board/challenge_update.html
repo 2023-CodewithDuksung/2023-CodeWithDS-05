@@ -9,6 +9,7 @@
             {{ challenge.status }} = "2";
         };
     </script>
+<div class="col mx-auto text-center">
     <p>챌린지 {{challenge.get_day}}일차
         {% if challenge.status == "0" %}
             진행중
@@ -18,16 +19,21 @@
             실패
         {% endif %}
     </p>
-    <form method="post">
+    <form method="post" style="display: inline-block;">
         {% csrf_token %}
-        <h4>챌린지 제목</h4>{{form.title}}
-        <h4>카테고리</h4>{{form.category}}
-        <h4>챌린지 내용</h4>
-        <input type="textarea" name="memo" value="{{challenge.memo}}">
+        <h4 style="font-weight:600;">챌린지 제목</h4>
+        <!--{{form.title}}-->
+        <textarea cols="50" rows="1" name="title" wrap="hard">{{challenge.title}}</textarea>
+        <br><br>
+        <h4 style="font-weight:600;">카테고리</h4>{{form.category}}
+        <br><br>
+        <h4 style="font-weight:600;">챌린지 내용</h4>
+        <textarea cols="50" rows="10" name="memo" wrap="hard">{{challenge.memo}}</textarea>
         <div>
             <button type="submit" name="action" value="progress">계속 진행</button>
             <button type="submit" name="action" value="success">성공</button>
             <button type="submit" name="action" value="failure">실패</button>
         </div>
     </form>
+</div>
 {% endblock %}

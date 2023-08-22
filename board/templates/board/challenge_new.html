@@ -1,13 +1,18 @@
 {% extends 'board/base.html' %}
 
 {% block main_area %}
-    <form method="post" enctype="multipart/form-data">
+<div class="col mx-auto text-center">
+    <form method="post" enctype="multipart/form-data" style="display: inline-block;">
         {% csrf_token %}
-        <h4>챌린지 제목</h4>{{form.title}}
-        <h4>카테고리</h4>{{form.category}}
-        <h4>챌린지 내용</h4>
-        <input type="textarea" name="memo">
+        <h4 style="font-weight:600;">챌린지 제목</h4>
+        <textarea cols="50" rows="1" name="title" wrap="hard" placeholder="어떤 챌린지에 도전할까요?">{{challenge.title}}</textarea>
+        <br><br>
+        <h4 style="font-weight:600;">카테고리</h4>{{form.category}}
+        <br><br>
+        <h4 style="font-weight:600;">챌린지 내용</h4>
+        <textarea cols="50" rows="10" name="memo" wrap="hard"></textarea>
         <br>
         <button type="submit">챌린지 시작</button>
     </form>
+</div>
 {% endblock %}

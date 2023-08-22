@@ -4,21 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <link href="{% static 'board/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{% static 'board/css/challenge_new.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <script src="https://kit.fontawesome.com/edea15a092.js" crossorigin="anonymous"></script>
     <title>Challenge</title>
 </head>
 <body>
     {% include 'board/menubar.html' %}
+    <br>
 
     <div class="container">
         <div class="row">
-            <div class="col-3">
-                {% block side_area %}
-                {% endblock %}
-            </div>
-            <div class="col-9">
-                {% block main_area %}
-                {% endblock %}
-            </div>
+            {% block main_area %}
+            {% endblock %}
         </div>
     </div>
 </body>

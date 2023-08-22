@@ -1,33 +1,39 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <link href="{% static 'board/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
     <title>상세 페이지</title>
 </head>
 <body>
-{% include 'board/menubar.html' %}
+{% include 'board/menubar.html' %}<br>
 
-    <h1>My Page</h1>
-    <h3>이름 : {{user.username}}</h3>
-    <h3>학번 : {{user.number}}</h3>
-    <h3>대학 : {{user.college}}</h3>
-    <h3>학과 : {{user.major}}</h3>
-    <br><br>
-    <h3>챌린지 진행중</h3>
-    {% for l in challenge_keep_list %}
-    <a href={{l.get_absolute_url}}>{{l}} </a>{{l.get_day}}일차 진행중 {{l.get_user_name}}<br>
-    {% endfor %}
-    <br>
+    <div class="container">
+        <h1>My Page</h1>
+        <h3>이름 : {{user.username}}</h3>
+        <h3>학번 : {{user.number}}</h3>
+        <h3>대학 : {{user.college}}</h3>
+        <h3>학과 : {{user.major}}</h3>
+        <br><br>
+        <h3>챌린지 진행중</h3>
+        {% for l in challenge_keep_list %}
+        <a href={{l.get_absolute_url}}>{{l}} </a>{{l.get_day}}일차 진행중 {{l.get_user_name}}<br>
+        {% endfor %}
+        <br>
 
-    <h3>챌린지 성공</h3>
-    {% for l in challenge_success_list %}
-    <a href={{l.get_absolute_url}}>{{l}} </a>{{l.get_day}}일차 성공 {{l.get_user_name}}<br>
-    {% endfor %}
+        <h3>챌린지 성공</h3>
+        {% for l in challenge_success_list %}
+        <a href={{l.get_absolute_url}}>{{l}} </a>{{l.get_day}}일차 성공 {{l.get_user_name}}<br>
+        {% endfor %}
+        <br>
 
-    <h3>챌린지 실패</h3>
-    {% for 1 in challenge_failure_list %}
-    <a href={{l.get_absolute_url}}>{{l}} </a> 실패 {{l.get_user_name}}<br>
-    {% endfor %}
+        <h3>챌린지 실패</h3>
+        {% for 1 in challenge_failure_list %}
+        <a href={{l.get_absolute_url}}>{{l}} </a> 실패 {{l.get_user_name}}<br>
+        {% endfor %}
+        <br>
+    </div>
 
 </body>
 </html>
