@@ -16,6 +16,10 @@ def challenge_new(request):
             form = ChallengeForm(request.POST)
             if form.is_valid():
                 challenge = form.save(commit=False)
+                if request.POST.get('memo'):
+                    challenge.memo = request.POST.get('memo')
+                else:
+                    challenge.memo = ""
                 challenge.user = request.user
                 challenge.save()
                 return redirect(challenge.get_absolute_url())
@@ -38,6 +42,10 @@ def challenge_update(request, pk):
                 if form.is_valid():
                     challenge = form.save(commit=False)
                     challenge.user = request.user
+                    if request.POST.get('memo'):
+                        challenge.memo = request.POST.get('memo')
+                    else:
+                        challenge.memo = ""
                     if request.POST.get('action') == 'progress':
                         challenge.status = "0"
                     elif request.POST.get('action') == 'success':

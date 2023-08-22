@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from board.models import Category, College, Major, Number, User, Challenge
 from .forms import UserForm
+from django.core.paginator import Paginator
 
 # Create your views here.
 # 회원 가입
@@ -52,13 +53,25 @@ def user_logout(request):
     return redirect("user:login")
 
 #진행중
-def keep(request):
-    return render(request, '')
+def user_detail(request, username):
+    user = User.objects.get(username=username)
+    challenge_keep_list = Challenge.objects.filter(user=user).filter(status="0")
+    challenge_success_list = Challenge.objects.filter(user=user).filter(status="1")
+    challenge_failure_list = Challenge.objects.filter(user=user).filter(status="2")
 
-#성공
-def success(request):
-    return render(request,'')
+    page = request.GET.get("page", "1")
+    paginator_keep = Paginator(challenge_keep_list, 10)
+    paginator_success = Paginator(challenge_success_list, 10)
+    paginator_failure = Paginator(challenge_failure_list, 10)
+    page_keep = paginator_keep.get_page(page)
+    page_success = paginator_success.get_page(page)
+    page_failure = paginator_failure.get_page(page)
 
-#실패
-def fail(request):
-    return render(request,'')
+
+    return render(request, 'mypage/my_detail.html', {
+        'challenge_keep_list': page_keep,
+        'challenge_success_list': page_success,
+        'challenge_failure_list': page_failure,
+        'user':user,
+        'categories': Category.objects.all()
+    })

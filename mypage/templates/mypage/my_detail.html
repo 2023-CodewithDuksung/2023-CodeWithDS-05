@@ -5,11 +5,13 @@
     <title>상세 페이지</title>
 </head>
 <body>
+{% include 'board/menubar.html' %}
+
     <h1>My Page</h1>
-    <h3>이름 : {{}}</h3>
-    <h3>학번 : {{}}</h3>
-    <h3>대학 : {{}}</h3>
-    <h3>학과 : {{}}</h3>
+    <h3>이름 : {{user.username}}</h3>
+    <h3>학번 : {{user.number}}</h3>
+    <h3>대학 : {{user.college}}</h3>
+    <h3>학과 : {{user.major}}</h3>
     <br><br>
     <h3>챌린지 진행중</h3>
     {% for l in challenge_keep_list %}
@@ -23,7 +25,7 @@
     {% endfor %}
 
     <h3>챌린지 실패</h3>
-    {% for 1 in challenge_fail_list %}
+    {% for 1 in challenge_failure_list %}
     <a href={{l.get_absolute_url}}>{{l}} </a> 실패 {{l.get_user_name}}<br>
     {% endfor %}
 

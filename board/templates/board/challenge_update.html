@@ -22,7 +22,8 @@
         {% csrf_token %}
         <h4>챌린지 제목</h4>{{form.title}}
         <h4>카테고리</h4>{{form.category}}
-        <h4>챌린지 내용</h4>{{form.memo}}
+        <h4>챌린지 내용</h4>
+        <input type="textarea" name="memo" value="{{challenge.memo}}">
         <div>
             <button type="submit" name="action" value="progress">계속 진행</button>
             <button type="submit" name="action" value="success">성공</button>

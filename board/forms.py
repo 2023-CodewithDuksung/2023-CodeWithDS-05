@@ -12,11 +12,7 @@ class ChallengeForm(forms.ModelForm):
             }
         )
     )
-    memo = forms.CharField(
-        label='챌린지 내용',
-        widget=forms.Textarea
-    )
 
     class Meta:
         model = Challenge
-        fields = ('title', 'category', 'memo')
+        fields = ('title', 'category')
