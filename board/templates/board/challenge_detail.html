@@ -1,0 +1,49 @@
+{% extends 'board/base.html' %}
+{% block main_area %}
+    {% if user.is_authenticated %}
+        {% if user == challenge.user %}
+        <button type="button" onclick="checkStatus()">챌린지 수정</button>
+        {% endif %}
+    {% endif %}
+
+    <script>
+        function checkStatus() {
+            if({{challenge.status}} == "1") {
+                var result = confirm("성공한 챌린지를 수정하시면 일수가 달라질 수 있습니다. 수정하시겠습니까?");
+                if(result) {
+                    location.href = "update/";
+                }
+            }
+            else if({{challenge.status}} == "2") {
+                var result = confirm("실패한 챌린지를 수정하시면 일수가 달라질 수 있습니다. 수정하시겠습니까?");
+                if(result) {
+                    location.href = "update/";
+                }
+            }
+            else {
+                location.href = "update/";
+            }
+        };
+    </script>
+
+    <h4>챌린지 {{challenge.get_day}}일차
+        {% if challenge.status == "0" %}
+            진행중
+        {% elif challenge.status == "1" %}
+            성공
+        {% elif challenge.status == "2" %}
+            실패
+        {% endif %}
+    </h4>
+    <h3>{{challenge.title}}</h3>
+    <p>시작 날짜 : {{challenge.start_date}}</p>
+    <p>{{challenge.category}}</p>
+    <p>{{challenge.get_user_name}}</p>
+
+    {% if request.user in challenge.like_users.all %}
+    <a href="like/" type="button" style="color:red;">좋아요</a>
+    {% else %}
+    <a href="like/" type="button">좋아요</a>
+    {% endif %} ({{challenge.like_users.count}})
+    <p>{{challenge.memo}}</p>
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+{% include 'board/menubar.html' %}
+
+    <form method="POST" action="{% url 'user:signup' %}">
+        {% csrf_token %}
+        <p>username</p>
+        {{form.username}}
+        <br>
+        <p>password</p>
+        <input type="password" name="password">
+        <br>
+        <p>confirm</p>
+        <input type="password" name="confirm">
+        <br>
+        <p>number</p>
+        {{form.number}}
+        <br>
+        <p>college</p>
+        {{form.college}}
+        <br>
+        <p>major</p>
+        {{form.major}}
+        <br><br>
+        <input type="submit" value="회원가입">
+    </form>
+</body>
+</html>

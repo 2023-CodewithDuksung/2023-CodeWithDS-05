@@ -1,0 +1,41 @@
+{% extends 'board/base.html' %}
+
+{% block main_area %}
+    <select onchange="location.href=this.value">
+        <option value="../../">전체</option>
+        {% for n in numbers %}
+        {% if n == number_now %}
+        <option value="../{{n.number}}" selected>{{n}}</option>
+        {% else %}
+        <option value="../{{n.number}}">{{n}}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+
+    <h3>챌린지 진행중</h3>
+    {% for l in challenge_keep_list %}
+    <a href={{l.get_absolute_url}}>{{l}}</a> {{l.get_day}}일차 진행중 ({{l.like_users.count}}) {{l.get_user_name}}<br>
+    {% endfor %}
+    <br>
+
+    {% include 'board/pagination_keep.html' %}
+
+    <h3>챌린지 성공</h3>
+    {% for l in challenge_success_list %}
+    <a href={{l.get_absolute_url}}>{{l}}</a> {{l.get_day}}일차 성공 ({{l.like_users.count}}) {{l.get_user_name}}<br>
+    {% endfor %}
+    <br>
+
+    {% include 'board/pagination_success.html' %}
+{% endblock %}
+
+{% block side_area %}
+    {% for c in colleges %}
+    <ul><a href="../../major/{{c.slug}}">{{c}}</a></ul>
+        {% for m in majors %}
+            {% if m.college == c %}
+            <li><a href="../../major/{{m.slug}}">{{m}}</a></li>
+            {% endif %}
+        {% endfor %}<br>
+    {% endfor %}
+{% endblock %}

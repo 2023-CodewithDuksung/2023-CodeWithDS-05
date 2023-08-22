@@ -1,0 +1,32 @@
+{% extends 'board/base.html' %}
+
+{% block main_area %}
+    <script>
+        function setSuccess() {
+            {{ challenge.status }} = "1";
+        };
+        function setFailure() {
+            {{ challenge.status }} = "2";
+        };
+    </script>
+    <p>챌린지 {{challenge.get_day}}일차
+        {% if challenge.status == "0" %}
+            진행중
+        {% elif challenge.status == "1" %}
+            성공
+        {% elif challenge.status == "2" %}
+            실패
+        {% endif %}
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        <h4>챌린지 제목</h4>{{form.title}}
+        <h4>카테고리</h4>{{form.category}}
+        <h4>챌린지 내용</h4>{{form.memo}}
+        <div>
+            <button type="submit" name="action" value="progress">계속 진행</button>
+            <button type="submit" name="action" value="success">성공</button>
+            <button type="submit" name="action" value="failure">실패</button>
+        </div>
+    </form>
+{% endblock %}
