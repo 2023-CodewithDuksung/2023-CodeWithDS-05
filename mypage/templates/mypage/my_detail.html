@@ -23,7 +23,7 @@
 
     <div class="container">
         <h1>My Page</h1>
-        <h3>이름 : {{user.username}}</h3>
+        <h3>ID : {{user.username}}</h3>
         <h3>학번 : {{user.number}}</h3>
         <h3>대학 : {{user.college}}</h3>
         {% if user.major %}
@@ -34,7 +34,6 @@
         <br><br>
         <div style="display: flex; justify-content: space-between;">
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3>챌린지 진행중</h3>
                 <h3>진행중인 챌린지</h3>
                 {% for l in challenge_keep_list %}
                 <a href={{l.get_absolute_url}}>{{l}} </a>D+{{l.get_day}}<br>
@@ -42,7 +41,6 @@
                 <br>
             </div>
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3>챌린지 성공</h3>
                 <h3>성공한 챌린지</h3>
                 {% for l in challenge_success_list %}
                 <a href={{l.get_absolute_url}}>{{l}} </a>D+{{l.get_day}}<br>
@@ -50,7 +48,6 @@
                 <br>
             </div>
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3>챌린지 실패</h3>
                 <h3>실패한 챌린지</h3>
                 {% for 1 in challenge_failure_list %}
                 <a href={{l.get_absolute_url}}>{{l}} </a>D+{{l.get_day}}<br>
