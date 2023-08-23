@@ -6,6 +6,7 @@
             color: #000;            /* 글자색을 검은색으로 설정 */
             width: 230px;
             float: left;
+            height: 100%;
         }
 
         /* 메뉴 항목 스타일 */

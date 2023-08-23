@@ -40,6 +40,16 @@
             padding-top: 8px;
         }
 
+        .start_button {
+            /* 챌린지 시작하기 버튼 디자인: 모서리 깎아서 오른쪽에 위치 */
+            background: white;
+            color: black;
+            border: 1px solid black;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
         /* 로그인 버튼 스타일 */
         .top-login-button {
             padding: 10px 20px; /* 상하 10px, 좌우 20px 여백 */

@@ -1,0 +1,105 @@
+.select-container {
+    /* 학번 드롭다운을 감싼 div태그입니다.  */
+    float: right;
+    padding-right: 10px; /* 오른쪽 여백 조정 */
+    padding: 0px;
+    margin-top: 13px;
+}
+
+.select-container select {
+    /* 학번 드롭다운 select */
+    border: 2px solid black;
+    border-radius: 4px;
+    float: right;
+}
+
+
+
+.tableBlock {
+    /* 진행중 및 성공 표시와 목록까지 묶은 class입니다. (흰색 배경으로 보이는 부분) */
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    width: 100%;
+    margin-top: 30px;
+    margin-right: 0px;
+    text-align: center;
+}
+
+table {
+    width: 95%;
+}
+
+
+/* 제목 열 너비 조절 */
+th:first-child, td:first-child {
+    width: 30%;
+}
+
+/* 며칠차 열 너비 조절 */
+th:nth-child(2), td:nth-child(2) {
+    width: 20%;
+}
+
+/* 좋아요 수 열 너비 조절 */
+th:nth-child(3), td:nth-child(3) {
+    width: 20%;
+}
+
+/* 전공/학번 열 너비 조절 */
+th:nth-child(4), td:nth-child(4) {
+    width: 30%;
+}
+
+td, th {
+    /* 챌린지 목록들입니다.  */
+    text-align: left;
+    padding: 10px;
+    height: 20px;
+}
+
+table thead {
+    /* 제목이랑 좋아요 수 등 thead부분입니다.  */
+    height: 60px;
+    vertical-align: top;
+}
+
+thead th {
+    /* thead bold 없애기 */
+    font-weight: normal;
+  }
+
+td a {
+    /* 링크 색/밑줄 없애기(챌린지 목록 부분) */
+    color: black;
+    text-decoration: none;
+}
+
+/* 제목을 제외한 행에 커서를 올리면 해당 행의 배경색이 하늘색으로 바뀜 */
+tbody tr:hover {
+    background-color: #F0F8FF;
+}
+
+.tableBlock h3 {
+    /* 진행중 및 성공한 challenge 표시(회색 선으로 감싼 부분) */
+    font-weight: bold;
+    margin: 8px 0;
+    margin-bottom: 30px;
+    padding: 14px;
+    border: 2px solid lightgrey;
+    border-radius: 8px;
+    width: 95%;
+    font-size: medium;
+    text-align: center;
+}
+
+
+
+.emoji {
+/* 문서 이모티콘 삽입하기 근데 실패해서 무시하셔도 됩니다! */
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+    display: inline-block;
+}

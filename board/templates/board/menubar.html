@@ -26,6 +26,9 @@
         <a href="#" onclick="checkLogin()">MY</a>
     </div>
     <div id="menubar-right">
+        <div class="button-container">
+            <button class="start_button" type="button" onclick="checkLogin()">Challenge 시작</button>
+        </div>
         {% if user.is_authenticated %}
         <a href="{% url 'user:logout' %}" class="top-login-button">로그아웃</a>
         {% else %}

@@ -17,8 +17,6 @@
 </div>
 
 <div class="col-9">
-<button type="button" onclick="checkLogin()">챌린지 시작</button><br>
-
 <script>
     function checkLogin(){
         {% if user.is_authenticated %}
@@ -32,31 +30,62 @@
     }
 </script>
 
-    <select onchange="location.href=this.value">
-        <option value="#">전체</option>
-        {% for n in numbers %}
-        {% if n == number_now %}
-        <option value="number/{{n.number}}" selected>{{n}}</option>
-        {% else %}
-        <option value="number/{{n.number}}">{{n}}</option>
-        {% endif %}
-        {% endfor %}
-    </select>
+    <div class="select-container">
+        <select onchange="location.href=this.value">
+            <option value="#">전체</option>
+            {% for n in numbers %}
+            {% if n == number_now %}
+            <option value="number/{{n.number}}" selected>{{n}}</option>
+            {% else %}
+            <option value="number/{{n.number}}">{{n}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+    </div><br>
 
-    <h3>챌린지 진행중</h3>
-    {% for l in challenge_keep_list %}
-    <a href={{l.get_absolute_url}}>{{l}}</a> {{l.get_day}}일차 진행중 <i class="fa-regular fa-heart"></i>{{l.like_users.count}} {{l.get_user_name}}<br>
-    {% endfor %}
-    <br>
+    <div class="tableBlock">
+        <h3>&plus; <span>진행중 Challenge</span></h3>
+        <!--<span class="emoji">&#x1F4C4; </span>-->
+        <table>
+            <thead>
+                <tr><th>제목</th><th>며칠차</th><th>좋아요 수</th><th>전공/학번</th></tr>
+            </thead>
+            <tobody>
+                {% for l in challenge_keep_list %}
+                <tr>
+                    <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
+                    <td>&plus;{{l.get_day}}</td>
+                    <td> &#x2661;{{l.like_users.count}}</td>
+                    <td>{{l.get_user_name}}</td>
+                </tr>
+                {% endfor %}
+            </tobody>
+        </table>
+    </div><br>
 
     {% include 'board/pagination_keep.html' %}
+    <br><br><br>
 
-    <h3>챌린지 성공</h3>
-    {% for l in challenge_success_list %}
-    <a href={{l.get_absolute_url}}>{{l}}</a> {{l.get_day}}일차 성공 <i class="fa-regular fa-heart"></i>{{l.like_users.count}} {{l.get_user_name}}<br>
-    {% endfor %}
-    <br>
+    <div class="tableBlock">
+        <h3>&checkmark; <span>성공 Challenge</span></h3>
+        <table>
+            <thead>
+                <tr><th>제목</th><th>며칠차</th><th>좋아요 수</th><th>전공/학번</th></tr>
+            </thead>
+            <tobody>
+                {% for l in challenge_success_list %}
+                <tr>
+                    <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
+                    <td>&plus;{{l.get_day}}</td>
+                    <td> &#x2661;{{l.like_users.count}}</td>
+                    <td>{{l.get_user_name}}</td>
+                </tr>
+                {% endfor %}
+            </tobody>
+        </table>
+    </div><br>
 
     {% include 'board/pagination_success.html' %}
 </div>
+
 {% endblock %}
