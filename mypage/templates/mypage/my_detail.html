@@ -10,6 +10,12 @@
         body{
             background-color: #FCF1AB;
         }
+        .rounded-box {
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -22,23 +28,29 @@
         <h3>대학 : {{user.college}}</h3>
         <h3>학과 : {{user.major}}</h3>
         <br><br>
-        <h3>챌린지 진행중</h3>
-        {% for l in challenge_keep_list %}
-        <a href={{l.get_absolute_url}}>{{l}} </a>{{l.get_day}}일차 진행중 {{l.get_user_name}}<br>
-        {% endfor %}
-        <br>
-
-        <h3>챌린지 성공</h3>
-        {% for l in challenge_success_list %}
-        <a href={{l.get_absolute_url}}>{{l}} </a>{{l.get_day}}일차 성공 {{l.get_user_name}}<br>
-        {% endfor %}
-        <br>
-
-        <h3>챌린지 실패</h3>
-        {% for 1 in challenge_failure_list %}
-        <a href={{l.get_absolute_url}}>{{l}} </a> 실패 {{l.get_user_name}}<br>
-        {% endfor %}
-        <br>
+        <div style="display: flex; justify-content: space-between;">
+            <div style="flex:1; margin-right:10px;" class="rounded-box">
+                <h3>챌린지 진행중</h3>
+                {% for l in challenge_keep_list %}
+                <a href={{l.get_absolute_url}}>{{l}} </a>{{l.get_day}}일차 진행중 {{l.get_user_name}}<br>
+                {% endfor %}
+                <br>
+            </div>
+            <div style="flex:1; margin-right:10px;" class="rounded-box">
+                <h3>챌린지 성공</h3>
+                {% for l in challenge_success_list %}
+                <a href={{l.get_absolute_url}}>{{l}} </a>{{l.get_day}}일차 성공 {{l.get_user_name}}<br>
+                {% endfor %}
+                <br>
+            </div>
+            <div style="flex:1; margin-right:10px;" class="rounded-box">
+                <h3>챌린지 실패</h3>
+                {% for 1 in challenge_failure_list %}
+                <a href={{l.get_absolute_url}}>{{l}} </a> 실패 {{l.get_user_name}}<br>
+                {% endfor %}
+                <br>
+            </div>
+        </div>
     </div>
 
 </body>
