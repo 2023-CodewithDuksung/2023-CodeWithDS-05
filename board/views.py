@@ -110,7 +110,8 @@ def challenge_list(request, slug_category):
         'categories': Category.objects.all(),
         'colleges': College.objects.all(),
         'majors': Major.objects.all().order_by('name'),
-        'numbers': Number.objects.all().order_by('number')
+        'numbers': Number.objects.all().order_by('number'),
+        'category_now': category
     })
 
 def challenge_number_list(request, slug_category, number):
@@ -136,7 +137,9 @@ def challenge_number_list(request, slug_category, number):
         'colleges': College.objects.all(),
         'majors': Major.objects.all().order_by('name'),
         'numbers': Number.objects.all().order_by('number'),
-        'number_now': number
+        'category_now': category,
+        'number_now': number,
+
     })
 
 def challenge_major_list(request, slug_category, slug_major):
@@ -166,7 +169,9 @@ def challenge_major_list(request, slug_category, slug_major):
         'categories': Category.objects.all(),
         'colleges': College.objects.all(),
         'majors': Major.objects.all().order_by('name'),
-        'numbers': Number.objects.all().order_by('number')
+        'numbers': Number.objects.all().order_by('number'),
+        'category_now': category,
+        'major_now': slug_major
     })
 
 def challenge_major_number_list(request, slug_category, slug_major, number):
@@ -203,5 +208,7 @@ def challenge_major_number_list(request, slug_category, slug_major, number):
         'colleges': College.objects.all(),
         'majors': Major.objects.all().order_by('name'),
         'numbers': Number.objects.all().order_by('number'),
+        'category_now': category,
+        'major_now': slug_major,
         'number_now': number
     })

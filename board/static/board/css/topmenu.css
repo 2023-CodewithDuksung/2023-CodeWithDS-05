@@ -18,7 +18,7 @@
         }
 
         #menubar-center {
-            padding-top: 10px;
+            padding-top: 12px;
         }
 
         /* 메뉴 항목 스타일 */
@@ -37,7 +37,11 @@
         }
 
         #menubar-right {
-            padding-top: 8px;
+            padding-top: 4px;
+        }
+
+        .button-container{
+            display: inline-block;
         }
 
         .start_button {

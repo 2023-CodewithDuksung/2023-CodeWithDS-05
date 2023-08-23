@@ -1,11 +1,21 @@
 <script>
-    function checkLogin(){
+    function checkMY(){
         {% if user.is_authenticated %}
             location.href = "http://127.0.0.1:8000/auth/{{request.user}}/";
         {% else %}
             var result = confirm("로그인 후 이용하실 수 있습니다. 로그인하시겠습니까?");
                 if(result) {
                     location.href = "{% url 'user:login' %}";
+                }
+        {% endif %}
+    }
+    function checkStart(){
+        {% if user.is_authenticated %}
+            location.href = "{% url 'challenge_new' %}";
+        {% else %}
+            var result = confirm("로그인 후 이용하실 수 있습니다. 로그인하시겠습니까?");
+                if(result) {
+                    location.href = "{% url 'user:logout' %}";
                 }
         {% endif %}
     }
@@ -23,11 +33,11 @@
         {% for c in categories %}
         <a href={{c.get_absolute_url}}>{{c}}</a>
         {% endfor %}
-        <a href="#" onclick="checkLogin()">MY</a>
+        <a href="#" onclick="checkMY()">MY</a>
     </div>
     <div id="menubar-right">
         <div class="button-container">
-            <button class="start_button" type="button" onclick="checkLogin()">Challenge 시작</button>
+            <button class="start_button" type="button" onclick="checkStart()">Challenge 시작</button>
         </div>
         {% if user.is_authenticated %}
         <a href="{% url 'user:logout' %}" class="top-login-button">로그아웃</a>
@@ -36,4 +46,4 @@
         {% endif %}
     </div>
 </div>
-<div style="padding-top:59px"></div>
+<div style="padding-top:71px"></div>
