@@ -1,14 +1,18 @@
 {% extends 'board/base.html' %}
 
 {% block main_area %}
-<div class="col-3">
+<div id="side_body" class="vertical-menu col-3">
     {% for c in colleges %}
-    <ul><a href="major/{{c.slug}}">{{c}}</a></ul>
-        {% for m in majors %}
-            {% if m.college == c %}
-            <li><a href="major/{{m.slug}}">{{m}}</a></li>
-            {% endif %}
-        {% endfor %}<br>
+    <div class="side-item">
+        <a href="major/{{c.slug}}" style="text-decoration-line:none; color:#000000"><b style="color:#000000;">{{c}}</b></a>
+        <div id="side_dropdown" class="dropdown">
+            {% for m in majors %}
+                {% if m.college == c %}
+                <a href="major/{{m.slug}}">{{m}}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
     {% endfor %}
 </div>
 

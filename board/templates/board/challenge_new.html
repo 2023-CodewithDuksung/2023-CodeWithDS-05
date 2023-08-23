@@ -1,18 +1,23 @@
 {% extends 'board/base.html' %}
+{% load widget_tweaks %}
 
 {% block main_area %}
-<div class="col mx-auto text-center">
+<div id="new_body" class="col">
     <form method="post" enctype="multipart/form-data" style="display: inline-block;">
         {% csrf_token %}
-        <h4 style="font-weight:600;">챌린지 제목</h4>
-        <textarea cols="50" rows="1" name="title" wrap="hard" placeholder="어떤 챌린지에 도전할까요?">{{challenge.title}}</textarea>
-        <br><br>
-        <h4 style="font-weight:600;">카테고리</h4>{{form.category}}
-        <br><br>
-        <h4 style="font-weight:600;">챌린지 내용</h4>
-        <textarea cols="50" rows="10" name="memo" wrap="hard"></textarea>
+        <h4 class="new_title">챌린지 제목</h4>
+        {{form.title|add_class:"new_title"|attr:"placeholder:무슨 챌린지에 도전할까요?"}}
         <br>
-        <button type="submit">챌린지 시작</button>
+        <select name="category" required id="new_category">
+            <option value="" disabled selected>카테고리</option>
+            {% for c in categories %}
+            <option value="{{c.name}}">{{c.name}}</option>
+            {% endfor %}
+        </select>
+        <p>내용</p>
+        <textarea cols="40" rows="10" name="memo" id="new_memo"></textarea>
+        <br>
+        <button id="new_button" type="submit">챌린지 시작</button>
     </form>
 </div>
 {% endblock %}

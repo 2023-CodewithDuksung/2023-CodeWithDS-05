@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'board',
     'mypage',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

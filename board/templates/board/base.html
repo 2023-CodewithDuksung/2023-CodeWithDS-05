@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <link href="{% static 'board/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
     <link href="{% static 'board/css/challenge_new.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{% static 'board/css/sidemenu.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{% static 'board/css/topmenu.css' %}" rel="stylesheet" type="text/css" media="screen">
     <script src="https://kit.fontawesome.com/edea15a092.js" crossorigin="anonymous"></script>
     <title>Challenge</title>
+    <style>
+        body{
+            background-color: #FCF1AB;
+        }
+    </style>
 </head>
 <body>
     {% include 'board/menubar.html' %}
-    <br>
 
     <div class="container">
         <div class="row">

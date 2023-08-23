@@ -20,6 +20,13 @@ def user_signup(request):
             if form.is_valid():
                 user = form.save(commit=False)
                 user.password = request.POST['password']
+                number = request.POST.get('number')
+                user.number = Number.objects.get(number=number)
+                college = request.POST.get('college')
+                user.college = College.objects.get(name=college)
+                if request.POST.get('major'):
+                    major = request.POST.get('major')
+                    user.major = Major.objects.get(name=major)
                 user.save()
                 login(request, user)
                 return redirect("user:main")
@@ -28,6 +35,9 @@ def user_signup(request):
     return render(request, 'mypage/signup.html', {
         'form': form,
         'categories': Category.objects.all(),
+        'colleges': College.objects.all(),
+        'majors': Major.objects.all().order_by('name'),
+        'numbers': Number.objects.all().order_by('-number')
     })
 
 def user_login(request):

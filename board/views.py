@@ -16,7 +16,8 @@ def challenge_new(request):
             form = ChallengeForm(request.POST)
             if form.is_valid():
                 challenge = form.save(commit=False)
-                challenge.title = request.POST.get('title')
+                category = request.POST.get('category')
+                challenge.category = Category.objects.get(name=category)
                 if request.POST.get('memo'):
                     challenge.memo = request.POST.get('memo')
                 else:
