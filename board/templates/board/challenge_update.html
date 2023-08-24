@@ -10,6 +10,7 @@
         };
     </script>
 <div class="col mx-auto text-center">
+    <div class = "updateBlock">
     <p>챌린지 {{challenge.get_day}}일차
         {% if challenge.status == "0" %}
             진행중
@@ -21,19 +22,25 @@
     </p>
     <form method="post" style="display: inline-block;">
         {% csrf_token %}
-        <h4 style="font-weight:600;">챌린지 제목</h4>
+        {% comment %} <h4 style="font-weight:600;">챌린지 제목</h4> {% endcomment %}
         <!--{{form.title}}-->
-        <textarea cols="50" rows="1" name="title" wrap="hard">{{challenge.title}}</textarea>
-        <br><br>
-        <h4 style="font-weight:600;">카테고리</h4>{{form.category}}
-        <br><br>
-        <h4 style="font-weight:600;">챌린지 내용</h4>
-        <textarea cols="50" rows="10" name="memo" wrap="hard">{{challenge.memo}}</textarea>
-        <div>
+        <h4><textarea cols="50" rows="1" name="title" wrap="hard" id="update_title">{{challenge.title}}</textarea></h4>
+      
+        <h4 id="update_category">카테고리 | {{challenge.category}}</h4>
+
+        
+        {{form.category}} 
+      
+        {% comment %} <h4 style="font-weight:600;" id = "challengeCont">챌린지 내용</h4> {% endcomment %}
+        <textarea cols="100" rows="10" name="memo" wrap="hard" id="update_memo">{{challenge.memo}}</textarea>
+
+    </div>
+        <div class = "modifyButton">
             <button type="submit" name="action" value="progress">계속 진행</button>
             <button type="submit" name="action" value="success">성공</button>
             <button type="submit" name="action" value="failure">실패</button>
         </div>
     </form>
+
 </div>
 {% endblock %}
