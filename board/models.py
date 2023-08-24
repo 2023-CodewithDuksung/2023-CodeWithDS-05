@@ -45,7 +45,7 @@ class User(AbstractUser):
 class Challenge(models.Model):
     title = models.CharField(max_length=100)
     memo = models.TextField(null=True, blank=True)
-    start_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField()#auto_now_add=True
     end_date = models.DateField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -74,5 +74,3 @@ class Challenge(models.Model):
             return f'{self.user.major} {self.user.number}'
         else:
             return f'{self.user.college} {self.user.number}'
-
-#class Comment

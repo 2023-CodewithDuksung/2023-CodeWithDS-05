@@ -50,7 +50,7 @@ def user_login(request):
         if user.password == password:
             login(request, user)
             print("인증성공")
-            return redirect('user:main')  # 로그인 후 이동할 페이지 설정
+            return redirect("user:main")  # 로그인 후 이동할 페이지 설정
         else:
             print("인증실패")
             return render(request, 'mypage/login.html', {'error': 'username or password is incorrect.'})
@@ -72,9 +72,9 @@ def user_detail(request, username):
     random_quote = LifeQuotes.objects.order_by('?').first()
 
     page = request.GET.get("page", "1")
-    paginator_keep = Paginator(challenge_keep_list, 10)
-    paginator_success = Paginator(challenge_success_list, 10)
-    paginator_failure = Paginator(challenge_failure_list, 10)
+    paginator_keep = Paginator(challenge_keep_list, 5)
+    paginator_success = Paginator(challenge_success_list, 5)
+    paginator_failure = Paginator(challenge_failure_list, 5)
     page_keep = paginator_keep.get_page(page)
     page_success = paginator_success.get_page(page)
     page_failure = paginator_failure.get_page(page)

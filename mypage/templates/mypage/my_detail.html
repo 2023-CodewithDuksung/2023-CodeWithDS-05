@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link href="{% static 'board/css/topmenu.css' %}" rel="stylesheet" type="text/css" media="screen">
     <link href="{% static 'board/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <script src="https://kit.fontawesome.com/edea15a092.js" crossorigin="anonymous"></script>
     <title>상세 페이지</title>
     <style>
         body{
@@ -15,6 +16,54 @@
             border-radius: 10px;
             padding: 10px;
             margin: 10px 0;
+            background-color: #ffffff;
+        }
+        /* 제목 열 너비 조절 */
+        th:first-child, td:first-child {
+            width: 55%;
+        }
+
+        /* 며칠차 열 너비 조절 */
+        th:nth-child(2), td:nth-child(2) {
+            width: 22%;
+        }
+
+        /* 좋아요 수 열 너비 조절 */
+        th:nth-child(3), td:nth-child(3) {
+            width: 23%;
+        }
+
+        td, th {
+        /* 챌린지 목록들입니다.  */
+            text-align: left;
+            padding: 10px;
+            height: 20px;
+        }
+
+        td.my_like {
+            text-align: center;
+        }
+
+        table thead {
+        /* 제목이랑 좋아요 수 등 thead부분입니다.  */
+            height: 60px;
+            vertical-align: top;
+        }
+
+        thead th {
+        /* thead bold 없애기 */
+            font-weight: normal;
+        }
+
+        td a {
+        /* 링크 색/밑줄 없애기(챌린지 목록 부분) */
+            color: black;
+            text-decoration: none;
+        }
+
+        /* 제목을 제외한 행에 커서를 올리면 해당 행의 배경색이 하늘색으로 바뀜 */
+        tbody tr:hover {
+            background-color: #F0F8FF;
         }
     </style>
 </head>
@@ -22,7 +71,7 @@
 {% include 'board/menubar.html' %}<br>
 
     <div class="container">
-        <h1>My Page</h1>
+        <h1>My Page</h1><br>
         <h3>ID : {{user.username}}</h3>
         <h3>학번 : {{user.number}}</h3>
         <h3>대학 : {{user.college}}</h3>
@@ -31,29 +80,70 @@
         {% else %}
         <h3>학과 : -</h3>
         {% endif %}
-        <br><br>
-        <h4 class="rounded-box">{{user.username}}님! 응원합니다! <br> {{life_quotes.sentence}}</h4><br>
+        <br>
+        <h4 class="rounded-box">{{user.username}}님! 응원합니다! <br><br> {{life_quotes.sentence}}</h4><br>
         <div style="display: flex; justify-content: space-between;">
             <div style="flex:1; margin-right:10px;" class="rounded-box">
                 <h3>진행중인 챌린지</h3>
-                {% for l in challenge_keep_list %}
-                <a href={{l.get_absolute_url}}>{{l}} </a>D+{{l.get_day}}<br>
-                {% endfor %}
-                <br>
+                <table>
+                    <thead>
+                        <tr><th>제목</th><th>며칠차</th><th>좋아요 수</th></tr>
+                    </thead>
+                    <tobody>
+                        {% for l in challenge_keep_list %}
+                        <tr>
+                            <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
+                            <td>D&plus;{{l.get_day}}</td>
+                            <td class="my_like"> &#x2661;{{l.like_users.count}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tobody>
+                </table>
             </div>
             <div style="flex:1; margin-right:10px;" class="rounded-box">
                 <h3>성공한 챌린지</h3>
-                {% for l in challenge_success_list %}
-                <a href={{l.get_absolute_url}}>{{l}} </a>D+{{l.get_day}}<br>
-                {% endfor %}
-                <br>
+                <table>
+                    <thead>
+                        <tr><th>제목</th><th>며칠차</th><th>좋아요 수</th></tr>
+                    </thead>
+                    <tobody>
+                        {% for l in challenge_success_list %}
+                        <tr>
+                            <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
+                            <td>D&plus;{{l.get_day}}</td>
+                            <td class="my_like"> &#x2661;{{l.like_users.count}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tobody>
+                </table>
             </div>
             <div style="flex:1; margin-right:10px;" class="rounded-box">
                 <h3>실패한 챌린지</h3>
-                {% for 1 in challenge_failure_list %}
-                <a href={{l.get_absolute_url}}>{{l}} </a>D+{{l.get_day}}<br>
-                {% endfor %}
-                <br>
+                <table>
+                    <thead>
+                        <tr><th>제목</th><th>며칠차</th><th>좋아요 수</th></tr>
+                    </thead>
+                    <tobody>
+                        {% for l in challenge_failure_list %}
+                        <tr>
+                            <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
+                            <td>D&plus;{{l.get_day}}</td>
+                            <td class="my_like"> &#x2661;{{l.like_users.count}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tobody>
+                </table>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <div style="flex:1; margin-right:10px;">
+                {% include 'board/pagination_keep.html' %}
+            </div>
+            <div style="flex:1; margin-right:10px;">
+                {% include 'board/pagination_success.html' %}
+            </div>
+            <div style="flex:1; margin-right:10px;">
+                {% include 'mypage/pagination_failure.html' %}
             </div>
         </div>
     </div>
