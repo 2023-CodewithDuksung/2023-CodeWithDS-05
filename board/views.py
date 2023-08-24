@@ -49,15 +49,18 @@ def challenge_update(request, pk):
                         challenge.memo = request.POST.get('memo')
                     else:
                         challenge.memo = ""
-                    if request.POST.get('action') == 'progress':
-                        challenge.status = "0"
-                    elif request.POST.get('action') == 'success':
+                    if request.POST.get('action') == 'success':
                         challenge.status = "1"
                         challenge.end_date = date.today()
+                        challenge.save()
+                        return redirect('../success/')
                     elif request.POST.get('action') == 'failure':
                         challenge.status = "2"
                         challenge.end_date = date.today()
-                    challenge.save()
+                        challenge.save()
+                    else:
+                        challenge.status = "0"
+                        challenge.save()
                     return redirect(challenge.get_absolute_url())
             else:
                 form = ChallengeForm(instance=challenge)
@@ -68,6 +71,13 @@ def challenge_update(request, pk):
             })
     else:
         raise PermissionDenied
+
+def success(request, pk):
+    challenge = Challenge.objects.get(pk=pk)
+    return render(request, 'board/success.html', {
+        'challenge': challenge,
+        'categories': Category.objects.all(),
+    })
 
 class ChallengeDetail(LoginRequiredMixin, DetailView):
     model = Challenge

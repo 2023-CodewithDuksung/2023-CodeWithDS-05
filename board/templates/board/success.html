@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'board/bootstrap/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{% static 'board/css/challenge_new.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{% static 'board/css/topmenu.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <script src="https://kit.fontawesome.com/edea15a092.js" crossorigin="anonymous"></script>
+    <title>Challenge</title>
+    <style>
+        body{
+            background-color: #FFFDF0;
+        }
+    </style>
+    <meta http-equiv='refresh' content='5; url={{challenge.get_absolute_url}}'>
+</head>
+<body onload="onload()">
+    {% include 'board/menubar.html' %}
+
+    <script>
+        let s = document.getElementById("s")
+        setTimeout(s--,1000);
+    </script>
+
+    <div class="container text-center" style="margin-top: 100px;">
+        <h2>{{user.username}}님! <b style="color:blue;">{{challenge.title}}</b> 챌린지에 성공했어요!</h2>
+        <h3>축하합니다! 짝!짝!짝!</h3>
+        <img src="{% static 'board/image/duksae_ddabong.png' %}">
+        <h3><b id="s">5</b>초 후 화면이 넘어갑니다.</h3>
+    </div>
+</body>
+</html>

@@ -9,5 +9,6 @@ urlpatterns = [
     path('<str:slug_category>/major/<str:slug_major>/number/<str:number>/', views.challenge_major_number_list),
     path('challenge/new/', views.challenge_new, name='challenge_new'),
     path('<int:pk>/update/', views.challenge_update, name='challenge_update'),
-    path('<int:pk>/like/', views.like)
+    path('<int:pk>/like/', views.like),
+    path('<int:pk>/success/', views.success),
 ]
