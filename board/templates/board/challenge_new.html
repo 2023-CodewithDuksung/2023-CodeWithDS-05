@@ -3,8 +3,10 @@
 
 {% block main_area %}
 <div id="new_body" class="col">
-    <div class="new_div">
+    <h1><b>Challenge 시작!</b></h1>
+
         <form method="post" enctype="multipart/form-data" style="display: inline-block;">
+            <div class="new_div">
             {% csrf_token %}
             {% comment %} <h4 class="new_title">챌린지 제목</h4> {% endcomment %}
             {{form.title|add_class:"new_title"|attr:"placeholder:챌린지 제목"}}
@@ -21,16 +23,15 @@
                 <textarea cols="150" rows="10" name="memo" id="new_memo" placeholder="내용"></textarea>
             </div>
             <br>
-<<<<<<< HEAD
-            <button id="new_button" type="submit">챌린지 시작</button>
+</div>
+            <div>
+                <div class="text-center">
+                    <button id="new_button" type="submit">챌린지 시작</button>
+                </div>
+            </div>
         </form>
-=======
-    </div>
-    <div class="text-center">
-            <button id="new_button" type="submit">챌린지 시작</button>
-        </form>
-    </div>
-    
->>>>>>> affd5f265d345fcc619a53b4d2f82971d79825df
+
+
+
 </div>
 {% endblock %}
