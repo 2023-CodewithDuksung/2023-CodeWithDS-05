@@ -7,15 +7,15 @@
     <div class="tableBlock">
         <h3 style="background-color:#FBE5A3;"><span><i class="fa-solid fa-spinner"></i>&nbsp;진행중인 Challenge</span></h3>
         <!--<span class="emoji">&#x1F4C4; </span>-->
-        <table style="margin: 20px;">
-            <thead style="border-top: 1px solid black; border-bottom: 1px solid black; height: 30px;">
+        <table style="margin: 30px;">
+            <thead style="border-bottom: 1px solid black; height: 30px;">
                 <tr><th><b>제목</b></th><th>DAY</th><th>좋아요 수</th><th>전공/학번</th></tr>
             </thead>
             <tobody>
                 {% for l in challenge_keep_list %}
                 <tr>
                     <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
-                    <td>&plus;{{l.get_day}}</td>
+                    <td>D&plus;{{l.get_day}}</td>
                     <td> <i class="fa-solid fa-heart fg-danger"></i>&nbsp;{{l.like_users.count}}</td>
                     <td>{{l.get_user_name}}</td>
                 </tr>
@@ -28,15 +28,15 @@
 
     <div class="tableBlock">
         <h3 style="background-color:#FBE5A3;"><span><i class="fa-solid fa-thumbs-up"></i>&nbsp;성공한 Challenge</span></h3>
-        <table>
-            <thead style="border-top: 1px solid black; border-bottom: 1px solid black; height: 30px;">
+        <table style="margin: 30px;">
+            <thead style="border-bottom: 1px solid black; height: 30px;">
                 <tr><th>제목</th><th>DAY</th><th>좋아요 수</th><th>전공/학번</th></tr>
             </thead>
             <tobody>
                 {% for l in challenge_success_list %}
                 <tr>
                     <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
-                    <td>&plus;{{l.get_day}}</td>
+                    <td>D&plus;{{l.get_day}}</td>
                     <td><i class="fa-solid fa-heart fg-danger"></i>&nbsp;{{l.like_users.count}}</td>
                     <td>{{l.get_user_name}}</td>
                 </tr>

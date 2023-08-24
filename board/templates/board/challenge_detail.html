@@ -60,7 +60,11 @@
         {% endif %}
         <span id="like-count" style="font-size: 20px;">{{ challenge.like_users.count }}</span>
      </a>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 6195162d1fb8af512134e7f01f7ebe3e42598948
     &nbsp;
     {% if user.is_authenticated %}
         {% if user == challenge.user %}
@@ -74,7 +78,12 @@
 <script>
     const likeButton = document.getElementById('like-button');
     const likeCount = document.getElementById('like-count');
+<<<<<<< HEAD
 likeButton.addEventListener('click', function() {
+=======
+
+    likeButton.addEventListener('click', function() {
+>>>>>>> 6195162d1fb8af512134e7f01f7ebe3e42598948
         if (likeButton.querySelector('.fa-heart').classList.contains('fa-regular')) {
             likeButton.querySelector('.fa-heart').classList.remove('fa-regular');
             likeButton.querySelector('.fa-heart').classList.add('fa-solid', 'fg-danger');
@@ -85,4 +94,8 @@ likeButton.addEventListener('click', function() {
             likeCount.textContent = parseInt(likeCount.textContent) - 1;
         }
     });
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> 6195162d1fb8af512134e7f01f7ebe3e42598948
