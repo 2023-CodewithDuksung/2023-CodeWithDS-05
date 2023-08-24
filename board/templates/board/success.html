@@ -11,23 +11,41 @@
     <style>
         body{
             background-color: #FFFDF0;
+            background-image: url({% static 'board/image/con2.gif' %});
         }
     </style>
     <meta http-equiv='refresh' content='5; url={{challenge.get_absolute_url}}'>
+    <script>
+        function startCount() {
+            let s = document.getElementById("s");
+            let ss = 5;
+
+            let countdown = setInterval(function() {
+                ss--;
+                s.innerHTML = ss;
+
+                if(ss<=0) {
+                    clearInterval(countdown);
+                }
+            }, 1000);
+        };
+
+        window.onload = function() {
+            startCount();
+        };
+    </script>
 </head>
-<body onload="onload()">
+<body>
     {% include 'board/menubar.html' %}
 
-    <script>
-        let s = document.getElementById("s")
-        setTimeout(s--,1000);
-    </script>
-
     <div class="container text-center" style="margin-top: 100px;">
-        <h2>{{user.username}}님! <b style="color:blue;">{{challenge.title}}</b> 챌린지에 성공했어요!</h2>
-        <h3>축하합니다! 짝!짝!짝!</h3>
-        <img src="{% static 'board/image/duksae_ddabong.png' %}">
-        <h3><b id="s">5</b>초 후 화면이 넘어갑니다.</h3>
+        <h1>{{user.username}}님! <b style="color:blue;">{{challenge.title}}</b> 챌린지에 성공했어요!</h1>
+        <h2>축하합니다! 짝!짝!짝!</h2><br><br><br><br>
+        <div style="display:inline-block;">
+            <img src="{% static 'board/image/duksae_ddabong.png' %}" style="weight:40vh; height:40vh">
+            <img src="{% static 'board/image/bokdan_d.png' %}" style="weight:25vh; height:25vh; padding-top:100px">
+        </div><br><br>
+        <h2><b id="s">5</b>초 후 화면이 넘어갑니다.</h2>
     </div>
 </body>
 </html>

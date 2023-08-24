@@ -58,6 +58,7 @@ def challenge_update(request, pk):
                         challenge.status = "2"
                         challenge.end_date = date.today()
                         challenge.save()
+                        return redirect('../failure/')
                     else:
                         challenge.status = "0"
                         challenge.save()
@@ -75,6 +76,13 @@ def challenge_update(request, pk):
 def success(request, pk):
     challenge = Challenge.objects.get(pk=pk)
     return render(request, 'board/success.html', {
+        'challenge': challenge,
+        'categories': Category.objects.all(),
+    })
+
+def failure(request, pk):
+    challenge = Challenge.objects.get(pk=pk)
+    return render(request, 'board/failure.html', {
         'challenge': challenge,
         'categories': Category.objects.all(),
     })

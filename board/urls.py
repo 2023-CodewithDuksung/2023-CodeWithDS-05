@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:pk>/update/', views.challenge_update, name='challenge_update'),
     path('<int:pk>/like/', views.like),
     path('<int:pk>/success/', views.success),
+    path('<int:pk>/failure/', views.failure),
 ]
