@@ -54,16 +54,38 @@
 </div>
 <br>
 <div style="display: flex; justify-content: flex-end;">
-    {% if request.user in challenge.like_users.all %}
-    <a href="like/" type="button" style="color:red;margin-left:20px; margin-right:20px padding: 10px 20px;"><i class="fa-solid fa-heart fg-danger"></i></a>
-    {% else %}
-    <a href="like/" type="button" style="margin-left:20px; margin-right:20px padding: 10px 20px;"><i class="fa-regular fa-heart"></i></a>
-    {% endif %} &nbsp;({{challenge.like_users.count}})
-    &nbsp;&nbsp;
+    <a id="like-button" href="like/" type="button" style="margin-left: 20px; margin-right: 20px; border-radius: 5px;padding: 10px 20px;background-color: #FFFDF0;text-decoration: none;">
+        {% if request.user in challenge.like_users.all %}
+            <i class="fa-solid fa-heart fg-danger" style="color:red;"></i>
+        {% else %}
+            <i class="fa-regular fa-heart"></i>
+        {% endif %}
+        <span id="like-count">{{ challenge.like_users.count }}</span>
+     </a>
+    
+    &nbsp;
     {% if user.is_authenticated %}
         {% if user == challenge.user %}
-        <button type="button" onclick="checkStatus()" style="background-color: #f7cf60;border: none;border-radius: 5px; padding: 10px 20px;" >챌린지 수정</button>
+            <button type="button" onclick="checkStatus()" style="background-color: #f7cf60; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer;">챌린지 수정</button>
         {% endif %}
     {% endif %}
-</div></div>
+</div>
+</div>
 {% endblock %}
+
+<script>
+    const likeButton = document.getElementById('like-button');
+    const likeCount = document.getElementById('like-count');
+
+    likeButton.addEventListener('click', function() {
+        if (likeButton.querySelector('.fa-heart').classList.contains('fa-regular')) {
+            likeButton.querySelector('.fa-heart').classList.remove('fa-regular');
+            likeButton.querySelector('.fa-heart').classList.add('fa-solid', 'fg-danger');
+            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+        } else {
+            likeButton.querySelector('.fa-heart').classList.remove('fa-solid', 'fg-danger');
+            likeButton.querySelector('.fa-heart').classList.add('fa-regular');
+            likeCount.textContent = parseInt(likeCount.textContent) - 1;
+        }
+    });
+</script>
