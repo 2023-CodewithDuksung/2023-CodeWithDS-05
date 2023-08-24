@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from board.models import Category, College, Major, Number, User, Challenge
 from .forms import UserForm
 from django.core.paginator import Paginator
+from .models import LifeQuotes
 
 # Create your views here.
 # 회원 가입
@@ -68,6 +69,7 @@ def user_detail(request, username):
     challenge_keep_list = Challenge.objects.filter(user=user).filter(status="0")
     challenge_success_list = Challenge.objects.filter(user=user).filter(status="1")
     challenge_failure_list = Challenge.objects.filter(user=user).filter(status="2")
+    random_quote = LifeQuotes.objects.order_by('?').first()
 
     page = request.GET.get("page", "1")
     paginator_keep = Paginator(challenge_keep_list, 10)
@@ -83,5 +85,6 @@ def user_detail(request, username):
         'challenge_success_list': page_success,
         'challenge_failure_list': page_failure,
         'user':user,
-        'categories': Category.objects.all()
+        'categories': Category.objects.all(),
+        'life_quotes': random_quote
     })

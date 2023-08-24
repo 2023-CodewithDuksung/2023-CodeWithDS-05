@@ -3,7 +3,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: white; /* 배경색을 희색으로 설정 */
+            background-color: #FBE5A3; /* 배경색을 희색으로 설정 */
             color: black;            /* 글씨색을 검은색으로 설정 */
             font-weight: bold;         /* 볼드체 */
             display: flex;
@@ -13,7 +13,7 @@
         }
 
         #menubar-left {
-            padding-top: 4px;
+            padding-top: 6px;
             font-size:22px;
         }
 

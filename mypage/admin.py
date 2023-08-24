@@ -1,6 +1,6 @@
 from django.contrib import admin
-#from .models import MyPageUser
+from .models import LifeQuotes
 
 # Register your models here.
 
-#admin.site.register(MyPageUser)
+admin.site.register(LifeQuotes)

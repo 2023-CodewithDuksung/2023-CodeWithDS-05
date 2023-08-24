@@ -95,12 +95,12 @@ def like(request, pk):
 
 def challenge_list(request, slug_category):
     category = Category.objects.get(slug=slug_category)
-    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-start_date')
-    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-start_date')
+    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-pk')
+    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-pk')
 
     page = request.GET.get("page", "1")
-    paginator_keep = Paginator(challenge_keep_list, 10)
-    paginator_success = Paginator(challenge_success_list, 10)
+    paginator_keep = Paginator(challenge_keep_list, 5)
+    paginator_success = Paginator(challenge_success_list, 5)
     page_keep = paginator_keep.get_page(page)
     page_success = paginator_success.get_page(page)
 
@@ -118,15 +118,15 @@ def challenge_number_list(request, slug_category, number):
     category = Category.objects.get(slug=slug_category)
     number = Number.objects.get(number=number)
     users = User.objects.exclude(number=number)
-    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-start_date')
-    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-start_date')
+    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-pk')
+    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-pk')
     for u in users:
         challenge_keep_list = challenge_keep_list.exclude(user=u)
         challenge_success_list = challenge_success_list.exclude(user=u)
 
     page = request.GET.get("page", "1")
-    paginator_keep = Paginator(challenge_keep_list, 10)
-    paginator_success = Paginator(challenge_success_list, 10)
+    paginator_keep = Paginator(challenge_keep_list, 5)
+    paginator_success = Paginator(challenge_success_list, 5)
     page_keep = paginator_keep.get_page(page)
     page_success = paginator_success.get_page(page)
 
@@ -147,19 +147,21 @@ def challenge_major_list(request, slug_category, slug_major):
     college = College.objects.filter(slug=slug_major)
     if college:
         college = College.objects.get(slug=slug_major)
+        major_now = college.name
         users = User.objects.exclude(college=college)
     else:
         major = Major.objects.get(slug=slug_major)
+        major_now = major.name
         users = User.objects.exclude(major=major)
-    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-start_date')
-    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-start_date')
+    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-pk')
+    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-pk')
     for u in users:
         challenge_keep_list = challenge_keep_list.exclude(user=u)
         challenge_success_list = challenge_success_list.exclude(user=u)
 
     page = request.GET.get("page", "1")
-    paginator_keep = Paginator(challenge_keep_list, 10)
-    paginator_success = Paginator(challenge_success_list, 10)
+    paginator_keep = Paginator(challenge_keep_list, 5)
+    paginator_success = Paginator(challenge_success_list, 5)
     page_keep = paginator_keep.get_page(page)
     page_success = paginator_success.get_page(page)
 
@@ -171,7 +173,7 @@ def challenge_major_list(request, slug_category, slug_major):
         'majors': Major.objects.all().order_by('name'),
         'numbers': Number.objects.all().order_by('number'),
         'category_now': category,
-        'major_now': slug_major
+        'major_now': major_now
     })
 
 def challenge_major_number_list(request, slug_category, slug_major, number):
@@ -179,12 +181,14 @@ def challenge_major_number_list(request, slug_category, slug_major, number):
     college = College.objects.filter(slug=slug_major)
     if college:
         college = College.objects.get(slug=slug_major)
+        major_now = college.name
         users = User.objects.exclude(college=college)
     else:
         major = Major.objects.get(slug=slug_major)
+        major_now = major.name
         users = User.objects.exclude(major=major)
-    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-start_date')
-    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-start_date')
+    challenge_keep_list = Challenge.objects.filter(category=category).filter(status="0").order_by('-pk')
+    challenge_success_list = Challenge.objects.filter(category=category).filter(status="1").order_by('-pk')
     for u in users:
         challenge_keep_list = challenge_keep_list.exclude(user=u)
         challenge_success_list = challenge_success_list.exclude(user=u)
@@ -196,8 +200,8 @@ def challenge_major_number_list(request, slug_category, slug_major, number):
         challenge_success_list = challenge_success_list.exclude(user=u)
 
     page = request.GET.get("page", "1")
-    paginator_keep = Paginator(challenge_keep_list, 10)
-    paginator_success = Paginator(challenge_success_list, 10)
+    paginator_keep = Paginator(challenge_keep_list, 5)
+    paginator_success = Paginator(challenge_success_list, 5)
     page_keep = paginator_keep.get_page(page)
     page_success = paginator_success.get_page(page)
 
@@ -209,6 +213,6 @@ def challenge_major_number_list(request, slug_category, slug_major, number):
         'majors': Major.objects.all().order_by('name'),
         'numbers': Number.objects.all().order_by('number'),
         'category_now': category,
-        'major_now': slug_major,
+        'major_now': major_now,
         'number_now': number
     })

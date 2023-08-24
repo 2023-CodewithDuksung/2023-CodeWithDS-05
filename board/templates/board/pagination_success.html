@@ -2,20 +2,20 @@
         {% if challenge_success_list.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page={{challenge_success_list.previous_page_number}}">
-                이전
+                <i class="fa-sharp fa-solid fa-angles-left"></i>
             </a>
         </li>
         {% else %}
         <li class="page-item disabled">
             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                이전
+                <i class="fa-sharp fa-solid fa-angles-left"></i>
             </a>
         </li>
         {% endif %}
         {% for page_number in challenge_success_list.paginator.page_range %}
             {% if page_number == challenge_success_list.number %} <!-- challenge_list -->
             <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{page_number}}">
+                <a class="page-link" href="?page={{page_number}}" style="background-color:#F7CF60;">
                     {{page_number}}
                 </a>
             </li>
@@ -30,13 +30,13 @@
         {% if challenge_success_list.has_next %}
         <li class="page-item">
             <a class="page-link" href="?page={{challenge_success_list.next_page_number}}">
-                다음
+                <i class="fa-sharp fa-solid fa-angles-right"></i>
             </a>
         </li>
         {% else %}
         <li class="page-item disabled">
             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                다음
+                <i class="fa-sharp fa-solid fa-angles-right"></i>
             </a>
         </li>
         {% endif %}

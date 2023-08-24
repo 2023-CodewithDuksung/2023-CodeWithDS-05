@@ -83,6 +83,7 @@ tbody tr:hover {
 
 .tableBlock h3 {
     /* 진행중 및 성공한 challenge 표시(회색 선으로 감싼 부분) */
+    background-color: #FBE5A3;
     font-weight: bold;
     margin: 8px 0;
     margin-bottom: 30px;
