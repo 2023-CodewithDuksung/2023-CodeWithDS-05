@@ -54,13 +54,13 @@
 </div>
 <br>
 <div style="display: flex; justify-content: flex-end;">
-    <a id="like-button" href="like/" type="button" style="margin-left: 20px; margin-right: 20px; border-radius: 5px;padding: 10px 20px;background-color: #FFFDF0;text-decoration: none;">
+    <a id="like-button" href="like/" type="button" style="margin-left: 20px; margin-right: 20px; border-radius: 5px;padding: 10px 20px;background-color: #FFFDF0;text-decoration: none;color: black;">
         {% if request.user in challenge.like_users.all %}
-            <i class="fa-solid fa-heart fg-danger" style="color:red;"></i>
+            <i class="fa-solid fa-heart fg-danger" style="color:red;font-size: 20px;"></i>
         {% else %}
-            <i class="fa-regular fa-heart"></i>
+            <i class="fa-regular fa-heart" style="font-size: 20px;"></i>
         {% endif %}
-        <span id="like-count">{{ challenge.like_users.count }}</span>
+        <span id="like-count" style="font-size: 20px;">{{ challenge.like_users.count }}</span>
      </a>
     
     &nbsp;
