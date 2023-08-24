@@ -16,7 +16,7 @@
                 <tr>
                     <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
                     <td>&plus;{{l.get_day}}</td>
-                    <td> &#x2661;{{l.like_users.count}}</td>
+                    <td> <i class="fa-solid fa-heart fg-danger"></i>&nbsp;{{l.like_users.count}}</td>
                     <td>{{l.get_user_name}}</td>
                 </tr>
                 {% endfor %}
@@ -38,7 +38,7 @@
                 <tr>
                     <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
                     <td>&plus;{{l.get_day}}</td>
-                    <td> &#x2661;{{l.like_users.count}}</td>
+                    <td><i class="fa-solid fa-heart fg-danger"></i>&nbsp;{{l.like_users.count}}</td>
                     <td>{{l.get_user_name}}</td>
                 </tr>
                 {% endfor %}
