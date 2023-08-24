@@ -35,12 +35,6 @@
             margin: 20px 0px;
         }
 
-        /* .new_title::placeholder {
-            color: grey; 
-            text-align: center; /* 원하는 텍스트 정렬으로 변경 
-        } 
-        */
-
         /* 카테고리 선택 영역 */
         #new_category {
             width: 250px;
@@ -49,13 +43,6 @@
             margin-bottom: 30px;
             border: 2px solid black;
             border-radius: 8px;
-
-            /* -webkit-appearance: none; */
-            /* appearance: none; */
-        }
-
-        #new_category:focus {
-            margin-bottom: 150px;
         }
 
         #new_category option {
