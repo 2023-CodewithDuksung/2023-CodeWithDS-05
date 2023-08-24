@@ -15,6 +15,17 @@
 <body>
     {% include 'board/menubar.html' %}<br>
 
-    <div class="container"></div>
+    <div class="container">
+        <div>
+            <p>1등 {{success_first.name}} {{success_first_n}}개</p>
+            <p>2등 {{success_second.name}} {{success_second_n}}개</p>
+            <p>3등 {{success_third.name}} {{success_third_n}}개</p>
+        </div>
+        <div>
+            <p>1등 {{failure_first.name}} {{failure_first_n}}개</p>
+            <p>2등 {{failure_second.name}} {{failure_second_n}}개</p>
+            <p>3등 {{failure_third.name}} {{failure_third_n}}개</p>
+        </div>
+    </div>
 </body>
 </html>

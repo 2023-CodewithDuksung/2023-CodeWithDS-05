@@ -3,10 +3,11 @@
 
 {% block main_area %}
 <div id="new_body" class="col">
+    <div class="new_div">
     <form method="post" enctype="multipart/form-data" style="display: inline-block;">
         {% csrf_token %}
-        <h4 class="new_title">챌린지 제목</h4>
-        {{form.title|add_class:"new_title"|attr:"placeholder:무슨 챌린지에 도전할까요?"}}
+        {% comment %} <h4 class="new_title">챌린지 제목</h4> {% endcomment %}
+        {{form.title|add_class:"new_title"|attr:"placeholder:챌린지 제목"}}
         <br>
         <select name="category" required id="new_category">
             <option value="" disabled selected>카테고리</option>
@@ -14,9 +15,9 @@
             <option value="{{c.name}}">{{c.name}}</option>
             {% endfor %}
         </select>
-        <p>내용</p>
-        <textarea cols="40" rows="10" name="memo" id="new_memo"></textarea>
-        <br>
+        <textarea cols="80" rows="10" name="memo" id="new_memo" placeholder="내용"></textarea>
+    </div>
+    <br>
         <button id="new_button" type="submit">챌린지 시작</button>
     </form>
 </div>

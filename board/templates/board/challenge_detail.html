@@ -20,39 +20,50 @@
             }
         };
     </script>
+<br>
 
-    <h4>챌린지 {{challenge.get_day}}일차
+<div style="border-radius: 10px; background-color: #ffffff; padding: 20px;">
+    <div style="display: flex; align-items: center;">
+    <h3 style="font-weight:bold;">{{challenge.title}}</h3>
+
+
+    <h4>&nbsp;챌린지 {{challenge.get_day}}일차
         {% if challenge.status == "0" %}
-            진행중
+            진행중...
         {% elif challenge.status == "1" %}
-            성공
+            성공!
         {% elif challenge.status == "2" %}
             실패
         {% endif %}
-    </h4>
-    <h3 style="font-weight:bold;">{{challenge.title}}</h3>
-    <div>
+    </h4></div>
+ <hr>
+<div style="margin-left:20px; margin-right:20px">
         <p>시작 날짜 : {{challenge.start_date}}</p>
         <p>카테고리 : {{challenge.category}}</p>
         <p>도전자 : {{challenge.get_user_name}}</p>
     </div>
+    <hr>
     {% if challenge.memo %}
     <b style="margin-left:20px; margin-right:20px;">[내용]</b>
     <div style="background-color:#ffffff; margin-left:20px; margin-right:20px">
         {{challenge.memo}}
-    </div><br>
+    </div>
     {% endif %}
 
-    {% if request.user in challenge.like_users.all %}
-    <a href="like/" type="button" style="color:red;"><i class="fa-solid fa-heart fg-danger"></i></a>
-    {% else %}
-    <a href="like/" type="button"><i class="fa-regular fa-heart"></i></a>
-    {% endif %} ({{challenge.like_users.count}})<br><br>
 
+</div>
+<br>
+<div style="display: flex; justify-content: flex-end;">
+    {% if request.user in challenge.like_users.all %}
+    <a href="like/" type="button" style="color:red;margin-left:20px; margin-right:20px padding: 10px 20px;"><i class="fa-solid fa-heart fg-danger"></i></a>
+    {% else %}
+    <a href="like/" type="button" style="margin-left:20px; margin-right:20px padding: 10px 20px;"><i class="fa-regular fa-heart"></i></a>
+    {% endif %} &nbsp;({{challenge.like_users.count}})
+    &nbsp;&nbsp;
     {% if user.is_authenticated %}
         {% if user == challenge.user %}
-        <button type="button" onclick="checkStatus()">챌린지 수정</button>
+        <button type="button" onclick="checkStatus()" style="background-color: #f7cf60;border: none;border-radius: 5px; padding: 10px 20px;" >챌린지 수정</button>
         {% endif %}
     {% endif %}
-</div>
+</div></div>
 {% endblock %}

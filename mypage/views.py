@@ -9,8 +9,74 @@ from .models import LifeQuotes
 # Create your views here.
 # 회원 가입
 def main(request):
+    success_first_n = 0
+    success_second_n = 0
+    success_third_n = 0
+    success_first = Major.objects.get(name='컴퓨터공학전공')
+    success_second = Major.objects.get(name='소프트웨어전공')
+    success_third = Major.objects.get(name='수학전공')
+    for m in Major.objects.all():
+        n = 0
+        users = User.objects.filter(major=m)
+        for u in users:
+            challenges = Challenge.objects.filter(user=u).filter(status="1")
+            n += challenges.count()
+        if success_first_n < n:
+            success_third_n = success_second_n
+            success_third = success_second
+            success_second_n = success_first_n
+            success_second = success_first
+            success_first_n = n
+            success_first = m
+        elif success_second_n < n:
+            success_third_n = success_second_n
+            success_third = success_second
+            success_second_n = n
+            success_second = m
+        elif success_third_n < n:
+            success_third_n = n
+            success_third = m
+    failure_first_n = 0
+    failure_second_n = 0
+    failure_third_n = 0
+    failure_first = Major.objects.get(name='컴퓨터공학전공')
+    failure_second = Major.objects.get(name='소프트웨어전공')
+    failure_third = Major.objects.get(name='수학전공')
+    for m in Major.objects.all():
+        n = 0
+        users = User.objects.filter(major=m)
+        for u in users:
+            challenges = Challenge.objects.filter(user=u).filter(status="2")
+            n += challenges.count()
+        if failure_first_n < n:
+            failure_third_n = failure_second_n
+            failure_third = failure_second
+            failure_second_n = failure_first_n
+            failure_second = failure_first
+            failure_first_n = n
+            failure_first = m
+        elif failure_second_n < n:
+            failure_third_n = failure_second_n
+            failure_third = failure_second
+            failure_second_n = n
+            failure_second = m
+        elif failure_third_n < n:
+            failure_third_n = n
+            failure_third = m
     return render(request, 'mypage/main.html', {
-        'categories': Category.objects.all()
+        'categories': Category.objects.all(),
+        'success_first': success_first,
+        'success_first_n': success_first_n,
+        'success_second': success_second,
+        'success_second_n': success_second_n,
+        'success_third': success_third,
+        'success_third_n': success_third_n,
+        'failure_first': failure_first,
+        'failure_first_n': failure_first_n,
+        'failure_second': failure_second,
+        'failure_second_n': failure_second_n,
+        'failure_third': failure_third,
+        'failure_third_n': failure_third_n,
     })
 
 def user_signup(request):

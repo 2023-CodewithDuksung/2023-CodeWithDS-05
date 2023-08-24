@@ -81,13 +81,13 @@
         <h3>학과 : -</h3>
         {% endif %}
         <br>
-        <h4 class="rounded-box">{{user.username}}님! 응원합니다! <br><br> {{life_quotes.sentence}}</h4><br>
+        <h4 class="rounded-box">{{user.username}}님의 챌린지를 응원합니다! <br><br> {{life_quotes.sentence}}</h4><br>
         <div style="display: flex; justify-content: space-between;">
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3>진행중인 챌린지</h3>
+                <h3><i class="fa-solid fa-spinner"></i>&nbsp;진행중인 챌린지</h3>
                 <table>
                     <thead>
-                        <tr><th>제목</th><th>며칠차</th><th>좋아요 수</th></tr>
+                        <tr><th>제목</th><th>DAY</th><th>좋아요 수</th></tr>
                     </thead>
                     <tobody>
                         {% for l in challenge_keep_list %}
@@ -101,10 +101,10 @@
                 </table>
             </div>
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3>성공한 챌린지</h3>
+                <h3><i class="fa-solid fa-thumbs-up"></i>&nbsp;성공한 챌린지</h3>
                 <table>
                     <thead>
-                        <tr><th>제목</th><th>며칠차</th><th>좋아요 수</th></tr>
+                        <tr><th>제목</th><th>DAY</th><th>좋아요 수</th></tr>
                     </thead>
                     <tobody>
                         {% for l in challenge_success_list %}
@@ -118,10 +118,10 @@
                 </table>
             </div>
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3>실패한 챌린지</h3>
+                <h3><i class="fa-solid fa-thumbs-down"></i>&nbsp;실패한 챌린지</h3>
                 <table>
                     <thead>
-                        <tr><th>제목</th><th>며칠차</th><th>좋아요 수</th></tr>
+                        <tr><th>제목</th><th>DAY</th><th>좋아요 수</th></tr>
                     </thead>
                     <tobody>
                         {% for l in challenge_failure_list %}
