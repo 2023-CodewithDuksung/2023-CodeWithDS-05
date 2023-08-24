@@ -10,21 +10,169 @@
         body{
             background-color: #FFFDF0;
         }
+        .container {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 700px;
+        }
+
+        .front-box > .text {
+            margin-top: 110px;
+        }
+
+        .text > h1 {
+            font-size: 130px;
+            margin-bottom: 20px;
+            font-family: 'Racing Sans One', cursive;
+        }
+
+        .text > p {
+            font-size: 40px;
+            margin: 0;
+        }
+
+        .front-box {
+            background-color: #FFFDF0;
+            width: 1200px;
+            height: 500px;
+            border: 3px solid black;
+            border-radius: 10px;
+            position: absolute;
+            top: 10%;
+            left: 3%;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .back-box {
+            background-color: #FFBB00;
+            width: 1200px;
+            height: 500px;
+            border: 3px dashed black;
+            border-radius: 10px;
+            position: absolute;
+            top: 14%;
+            left: 5%;
+            z-index: 1;
+        }
+
+        .box-container, .podium {
+            width: 1500px;
+            margin: 0 auto;
+            margin-bottom: 100px;
+        }
+
+        .box1, .box2, .box3 {
+            display: inline-block;
+            text-align: center;
+            width: 400px;
+            height: 250px;
+            margin: 45px;
+            padding-top: 50px;
+            border: 3px solid black;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: larger;
+        }
+
+        .box1 > p, .box2 > p, .box3 > p {
+            margin: 0px;
+        }
+
+        .box1 > i, .box2 > i, .box3 > i {
+            margin-bottom: 30px;
+            font-size: larger;
+        }
+
+        .success, .fail {
+            width: 1200px;
+            margin: 100px auto;
+            text-align: center;
+        }
+
+        .podium-title {
+            color: #FFBB00;
+            width: 400px;
+            margin: 50px auto;
+            font-size: 60px;
+            font-weight: bold;
+            font-family: 'Diphylleia', serif;
+        }
+
+        img {
+            margin: 0 auto;
+            width: 700px;
+        }
+
+        .first, .second, .third {
+            display: inline-block;
+            margin: 5px;
+            font-weight: bold;
+            font-family: 'Diphylleia', serif;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
     {% include 'board/menubar.html' %}<br>
 
     <div class="container">
-        <div>
-            <p>1등 {{success_first.name}} {{success_first_n}}개</p>
-            <p>2등 {{success_second.name}} {{success_second_n}}개</p>
-            <p>3등 {{success_third.name}} {{success_third_n}}개</p>
+        <div class="front-box">
+            <div class="text">
+            <h1>DS-Challenger</h1>
+            <p>덕성여자대학교 학생들만을 위한 Challenge 사이트!<p>
+            <p>지금 바로 챌린지에 도전해보세요!</p>
+            </div>
         </div>
-        <div>
-            <p>1등 {{failure_first.name}} {{failure_first_n}}개</p>
-            <p>2등 {{failure_second.name}} {{failure_second_n}}개</p>
-            <p>3등 {{failure_third.name}} {{failure_third_n}}개</p>
+        <div class="back-box"></div>
+    </div>
+    <div class="box-container">
+        <div class="text2">
+            <div class="box1">
+                <i class="fas fa-smile"></i>
+                <p>'나랑 같은 과 동기들은</p>
+                <p>어떤 공부와 활동을 하고 있을까?'</p>
+                <p>궁금하지 않으셨나요?</p>
+            </div>
+            <div class="box2">
+                <i class="fas fa-smile"></i>
+                <p>동기, 선후배들이</p>
+                <p>어떤 챌린지에</p>
+                <p>도전하고 성공했는지 알 수 있어요!</p>
+            </div>
+            <div class="box3">
+                <i class="fas fa-smile"></i>
+                <p>자신이 어떤 공부와 활동을 하고 있는지</p>
+                <br>
+                <p>한 눈에 볼 수 있어요!</p>
+            </div>
+        </div>
+    </div>
+    <div class="podium">
+        <div class="success">
+            <p class="podium-title">명예의 전당</p>
+            <div style="margin: 0 auto;">
+            <img src="{% static 'board/image/podium2.png' %}">
+            <br>
+                <div class="ranking">
+                    <p class="first">{{success_second.name}}<br>{{success_second_n}}개</p>
+                    <p class="second">{{success_first.name}}<br>{{success_first_n}}개</p>
+                    <p class="third">{{success_third.name}}<br>{{success_third_n}}개</p>
+                </div>
+            </div>
+        </div>
+        <div class="fail">
+            <p class="podium-title" style="color: grey;">불명예의 전당</p>
+            <div style="margin: 0 auto;">
+            <img src="{% static 'board/image/podium2.png' %}">
+            <br>
+                <div class="ranking">
+                    <p class="first">{{failure_second.name}}<br>{{failure_first_n}}개</p>
+                    <p class="second">{{failure_first.name}}<br>{{failure_second_n}}개</p>
+                    <p class="third">{{failure_third.name}}<br>{{failure_third_n}}개</p>
+                </div>
+            </div>
         </div>
     </div>
 </body>
