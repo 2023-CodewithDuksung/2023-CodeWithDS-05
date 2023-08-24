@@ -1,69 +1,28 @@
 {% extends 'board/base.html' %}
+{% load widget_tweaks %}
+
 {% block main_area %}
-<div class="col text-left" style="margin-left:100px; margin-right:100px">
-    <script>
-        function checkStatus() {
-            if({{challenge.status}} == "1") {
-                var result = confirm("성공한 챌린지를 수정하시면 일수가 달라질 수 있습니다. 수정하시겠습니까?");
-                if(result) {
-                    location.href = "update/";
-                }
-            }
-            else if({{challenge.status}} == "2") {
-                var result = confirm("실패한 챌린지를 수정하시면 일수가 달라질 수 있습니다. 수정하시겠습니까?");
-                if(result) {
-                    location.href = "update/";
-                }
-            }
-            else {
-                location.href = "update/";
-            }
-        };
-    </script>
-<br>
-
-<div style="background-color: #ffffff; padding: 20px;border: 3px solid black;border-radius: 5px;">
-    <div style="display: flex; align-items: center;">
-    <h3 style="font-weight:bold;">{{challenge.title}}</h3>
-
-
-    <h4>&nbsp;챌린지 {{challenge.get_day}}일차
-        {% if challenge.status == "0" %}
-            진행중...
-        {% elif challenge.status == "1" %}
-            성공!
-        {% elif challenge.status == "2" %}
-            실패
-        {% endif %}
-    </h4></div>
- <hr>
-<div style="margin-left:20px; margin-right:20px">
-        <p>시작 날짜 : {{challenge.start_date}}</p>
-        <p>카테고리 : {{challenge.category}}</p>
-        <p>도전자 : {{challenge.get_user_name}}</p>
+<div id="new_body" class="col">
+        <form method="post" enctype="multipart/form-data" style="display: inline-block;">
+            {% csrf_token %}
+            {% comment %} <h4 class="new_title">챌린지 제목</h4> {% endcomment %}
+            {{form.title|add_class:"new_title"|attr:"placeholder:챌린지 제목"}}
+            <br>
+            <div class="form-group">
+                <select name="category" id="new_category" required>
+                    <option value="" disabled selected>카테고리</option>
+                    {% for c in categories %}
+                    <option value="{{c.name}}">{{c.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <textarea cols="150" rows="10" name="memo" id="new_memo" placeholder="내용"></textarea>
+            </div>
+            <br>
+        </form>
+    <div class="text-center">
+    <button id="new_button" type="submit">챌린지 시작</button>
     </div>
-    <hr>
-    {% if challenge.memo %}
-    <b style="margin-left:20px; margin-right:20px;">[내용]</b>
-    <div style="background-color:#ffffff; margin-left:20px; margin-right:20px">
-        {{challenge.memo}}
-    </div>
-    {% endif %}
-
-
 </div>
-<br>
-<div style="display: flex; justify-content: flex-end;">
-    {% if request.user in challenge.like_users.all %}
-    <a href="like/" type="button" style="color:red;margin-left:20px; margin-right:20px padding: 10px 20px;"><i class="fa-solid fa-heart fg-danger"></i></a>
-    {% else %}
-    <a href="like/" type="button" style="margin-left:20px; margin-right:20px padding: 10px 20px;"><i class="fa-regular fa-heart"></i></a>
-    {% endif %} &nbsp;({{challenge.like_users.count}})
-    &nbsp;&nbsp;
-    {% if user.is_authenticated %}
-        {% if user == challenge.user %}
-        <button type="button" onclick="checkStatus()" style="background-color: #f7cf60;border: none;border-radius: 5px; padding: 10px 20px;" >챌린지 수정</button>
-        {% endif %}
-    {% endif %}
-</div></div>
 {% endblock %}
