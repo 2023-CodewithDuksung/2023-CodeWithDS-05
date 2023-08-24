@@ -7,8 +7,8 @@
     <div class="tableBlock">
         <h3 style="background-color:#FBE5A3;"><span><i class="fa-solid fa-spinner"></i>&nbsp;진행중인 Challenge</span></h3>
         <!--<span class="emoji">&#x1F4C4; </span>-->
-        <table>
-            <thead>
+        <table style="margin: 20px;">
+            <thead style="border-top: 1px solid black; border-bottom: 1px solid black; height: 30px;">
                 <tr><th><b>제목</b></th><th>DAY</th><th>좋아요 수</th><th>전공/학번</th></tr>
             </thead>
             <tobody>
@@ -21,16 +21,15 @@
                 </tr>
                 {% endfor %}
             </tobody>
-        </table>
+        </table><br>
+        {% include 'board/pagination_keep.html' %}
     </div><br>
-
-    {% include 'board/pagination_keep.html' %}
  
 
     <div class="tableBlock">
         <h3 style="background-color:#FBE5A3;"><span><i class="fa-solid fa-thumbs-up"></i>&nbsp;성공한 Challenge</span></h3>
         <table>
-            <thead>
+            <thead style="border-top: 1px solid black; border-bottom: 1px solid black; height: 30px;">
                 <tr><th>제목</th><th>DAY</th><th>좋아요 수</th><th>전공/학번</th></tr>
             </thead>
             <tobody>
@@ -43,6 +42,6 @@
                 </tr>
                 {% endfor %}
             </tobody>
-        </table>
-    </div><br>
-    {% include 'board/pagination_success.html '%}
+        </table><br>
+        {% include 'board/pagination_success.html '%}
+    </div>

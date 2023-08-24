@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import date
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 
 # Create your models here.
 class Category(models.Model):
@@ -44,7 +46,7 @@ class User(AbstractUser):
 
 class Challenge(models.Model):
     title = models.CharField(max_length=100)
-    memo = models.TextField(null=True, blank=True)
+    memo = MarkdownxField()
     start_date = models.DateField(auto_now_add=True)
     end_date = models.DateField(blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -61,6 +63,9 @@ class Challenge(models.Model):
 
     def get_absolute_url(self):
         return f'/board/{self.pk}/'
+
+    def get_memo_markdown(self):
+        return markdown(self.memo)
 
     def get_day(self):
         if (self.status=="0"):

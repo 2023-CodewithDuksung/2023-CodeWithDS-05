@@ -132,9 +132,9 @@ def user_logout(request):
 #진행중
 def user_detail(request, username):
     user = User.objects.get(username=username)
-    challenge_keep_list = Challenge.objects.filter(user=user).filter(status="0")
-    challenge_success_list = Challenge.objects.filter(user=user).filter(status="1")
-    challenge_failure_list = Challenge.objects.filter(user=user).filter(status="2")
+    challenge_keep_list = Challenge.objects.filter(user=user).filter(status="0").order_by('-pk')
+    challenge_success_list = Challenge.objects.filter(user=user).filter(status="1").order_by('-pk')
+    challenge_failure_list = Challenge.objects.filter(user=user).filter(status="2").order_by('-pk')
     random_quote = LifeQuotes.objects.order_by('?').first()
 
     page = request.GET.get("page", "1")

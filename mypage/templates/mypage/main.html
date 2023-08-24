@@ -64,7 +64,7 @@
         .box-container, .podium {
             width: 1500px;
             margin: 0 auto;
-            margin-bottom: 100px;
+            margin-bottom: 20px;
         }
 
         .box {
@@ -122,6 +122,7 @@
 
         img {
             margin: 0 auto;
+            margin-top: 50px;
             width: 500px;
         }
 
@@ -134,6 +135,23 @@
             width: 140px;
             vertical-align: top;
         }
+
+        .first {
+            padding-bottom:120px;
+            margin-left:175px;
+            margin-bottom:100px;
+            position:absolute;
+        }
+
+        .second, .third {
+            padding-top:170px;
+            position:absolute;
+        }
+
+        .third {
+            padding-top:170px;
+            margin-left:330px;
+        }
     </style>
 </head>
 <body>
@@ -142,7 +160,7 @@
     <div class="container">
         <div class="front-box">
             <div class="text">
-                <h1>DS-Challenger<img src="{% static 'board/image/check.png' %}" style="width:130px; height:130px;"></h1>
+                <h1>DS-Challenger</h1>
             <p>덕성여자대학교 학생들만을 위한 Challenge 사이트!<p>
             <p>지금 바로 챌린지에 도전해보세요!</p>
             </div>
@@ -174,22 +192,22 @@
     <div class="podium">
         <div class="success">
             <p class="podium-title">명예의 전당</p>
-            <div style="margin: 0 auto;">
-            <img src="{% static 'board/image/podium2.png' %}">
-            <br>
-                <p class="first">{{success_second.name}}<br>{{success_second_n}}개</p>
-                <p class="second">{{success_first.name}}<br>{{success_first_n}}개</p>
+            <div style="margin: 0 auto;" class="jeon">
+                <br>
+                <p class="second">{{success_second.name}}<br>{{success_second_n}}개</p>
+                <p class="first">{{success_first.name}}<br>{{success_first_n}}개</p>
                 <p class="third">{{success_third.name}}<br>{{success_third_n}}개</p>
+                <img src="{% static 'board/image/podium2.png' %}">
             </div>
         </div>
         <div class="fail">
-            <p class="podium-title" style="color: grey;">불명예의 전당</p>
-            <div style="margin: 0 auto;">
-            <img src="{% static 'board/image/podium_fail.png' %}">
+            <p class="podium-title" style="color: grey;">분발하세요</p>
+            <div style="margin: 0 auto;" class="jeon">
             <br>
-                <p class="first">{{failure_second.name}}<br>{{failure_second_n}}개</p>
-                <p class="second">{{failure_first.name}}<br>{{failure_first_n}}개</p>
+                <p class="second">{{failure_second.name}}<br>{{failure_second_n}}개</p>
+                <p class="first">{{failure_first.name}}<br>{{failure_first_n}}개</p>
                 <p class="third">{{failure_third.name}}<br>{{failure_third_n}}개</p>
+                <img src="{% static 'board/image/podium_fail.png' %}">
             </div>
         </div>
     </div>
