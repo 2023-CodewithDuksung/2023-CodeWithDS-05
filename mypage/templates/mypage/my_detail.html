@@ -13,7 +13,7 @@
         }
         .rounded-box {
             border: 3px solid #422700;
-            border-radius: 10px;
+            border-radius: 5px;
             padding: 10px;
             margin: 10px 0;
             background-color: #ffffff;
@@ -82,9 +82,9 @@
         <h3>학과 : -</h3>
         {% endif %}
         </div><br>
-        <h4 class="rounded-box">{{user.username}}님의 챌린지를 응원합니다! <br><br> {{life_quotes.sentence}}</h4><br>
+        <h4 class="rounded-box">{{user.username}}님의 챌린지를 응원합니다! <br><br>&nbsp;&nbsp; {{life_quotes.sentence}}</h4><br>
         <div style="display: flex; justify-content: space-between;">
-            <div style="flex:1; margin-right:10px;" class="rounded-box">
+            <div style="flex:1; margin-right:10px; border-radius: 5px;" class="rounded-box">
                 <h3>&nbsp;<i class="fa-solid fa-spinner"></i>&nbsp;진행중인 챌린지</h3>
                 <table>
                     <thead>
