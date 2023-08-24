@@ -15,7 +15,7 @@
                 {% for l in challenge_keep_list %}
                 <tr>
                     <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
-                    <td>&plus;{{l.get_day}}</td>
+                    <td>D&plus;{{l.get_day}}</td>
                     <td> <i class="fa-solid fa-heart fg-danger"></i>&nbsp;{{l.like_users.count}}</td>
                     <td>{{l.get_user_name}}</td>
                 </tr>
@@ -37,7 +37,7 @@
                 {% for l in challenge_success_list %}
                 <tr>
                     <td><a href={{l.get_absolute_url}}>{{l}}</a></td>
-                    <td>&plus;{{l.get_day}}</td>
+                    <td>D&plus;{{l.get_day}}</td>
                     <td><i class="fa-solid fa-heart fg-danger"></i>&nbsp;{{l.like_users.count}}</td>
                     <td>{{l.get_user_name}}</td>
                 </tr>
