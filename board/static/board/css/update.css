@@ -1,7 +1,9 @@
 .updateBlock {
     text-align: left;
-    margin-top: 50px;
+    margin-top: 60px;
     margin-bottom: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
     padding: 30px;
     border: 3px solid black;
     border-radius: 8px;
@@ -52,11 +54,9 @@
 /* 내용 영역 */
 #update_memo {
     width: 100%;
-    max-width: 800px;
-    height: 300px;
     margin-bottom: 5px;
     font-size: 15px;
-    padding: 10px;
+    /* padding: 10px; */
     border: 2px solid black;
     border-radius: 8px;
 }
@@ -64,10 +64,10 @@
 
 .modifyButton {
 /* 수정/성공/실패 버튼의 집합 */
-    float: left;
+    float: center;
     margin-bottom: 15px;
     padding: 5px;   
-    margin-left: 10px;
+
 }
 
 
