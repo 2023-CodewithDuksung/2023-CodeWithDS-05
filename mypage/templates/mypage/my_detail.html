@@ -12,7 +12,7 @@
             background-color: #FFFDF0;
         }
         .rounded-box {
-            border: 3px solid #ddd;
+            border: 3px solid #422700;
             border-radius: 10px;
             padding: 10px;
             margin: 10px 0;
@@ -72,7 +72,8 @@
 
     <div class="container">
         <h1>My Page</h1><br>
-        <h3>ID : {{user.username}}</h3>
+        <div class="rounded-box">
+            <h3>ID : {{user.username}}</h3>
         <h3>학번 : {{user.number}}</h3>
         <h3>대학 : {{user.college}}</h3>
         {% if user.major %}
@@ -80,11 +81,11 @@
         {% else %}
         <h3>학과 : -</h3>
         {% endif %}
-        <br>
+        </div><br>
         <h4 class="rounded-box">{{user.username}}님의 챌린지를 응원합니다! <br><br> {{life_quotes.sentence}}</h4><br>
         <div style="display: flex; justify-content: space-between;">
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3><i class="fa-solid fa-spinner"></i>&nbsp;진행중인 챌린지</h3>
+                <h3>&nbsp;<i class="fa-solid fa-spinner"></i>&nbsp;진행중인 챌린지</h3>
                 <table>
                     <thead>
                         <tr><th>제목</th><th>DAY</th><th>좋아요 수</th></tr>
@@ -101,7 +102,7 @@
                 </table>
             </div>
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3><i class="fa-solid fa-thumbs-up"></i>&nbsp;성공한 챌린지</h3>
+                <h3>&nbsp;<i class="fa-solid fa-thumbs-up"></i>&nbsp;성공한 챌린지</h3>
                 <table>
                     <thead>
                         <tr><th>제목</th><th>DAY</th><th>좋아요 수</th></tr>
@@ -118,7 +119,7 @@
                 </table>
             </div>
             <div style="flex:1; margin-right:10px;" class="rounded-box">
-                <h3><i class="fa-solid fa-thumbs-down"></i>&nbsp;실패한 챌린지</h3>
+                <h3>&nbsp;<i class="fa-solid fa-thumbs-down"></i>&nbsp;실패한 챌린지</h3>
                 <table>
                     <thead>
                         <tr><th>제목</th><th>DAY</th><th>좋아요 수</th></tr>
